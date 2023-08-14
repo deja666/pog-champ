@@ -1,10 +1,9 @@
 
 ## Bahasa pengembangannya adalah Kotlin dengan bantuan.  
 <br>
-- Riot API (Data Dragon)
-https://developer.riotgames.com/
-- MVVM (Model — View — ViewModel)
-
+- `Riot API (Data Dragon https://developer.riotgames.com/)`
+- `MVVM (Model — View — ViewModel)`
+<br>
 
 ## Menggunakan Depedencies Features dari:
 - `ViewModel`
