@@ -2,6 +2,7 @@
 ## Bahasa pengembangannya adalah Kotlin dengan bantuan.  
 <br>
 -Riot API (Data Dragon)
+https://developer.riotgames.com/
 
 
 ## Menggunakan Depedencies Features dari:
