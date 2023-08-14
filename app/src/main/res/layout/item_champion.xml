@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import
+            alias="urlHelper"
+            type="org.pogchamp.lolchampions.presentation.util.UrlHelperKt" />
+
+        <variable
+            name="champion"
+            type="org.pogchamp.lolchampions.domain.model.Champion" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:background="@android:color/transparent">
+
+        <ImageView
+            android:id="@+id/iv_champion"
+            imageUrl="@{urlHelper.getChampionImageUrl(champion.id)}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            android:transitionName="@string/transition_champion_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_champion_name"
+            style="@style/Text.Keyword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="@{champion.name}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_champion" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="java.util.List" />
+
+        <import type="org.pogchamp.lolchampions.presentation.util.UrlHelperKt" />
+
+        <import type="org.pogchamp.lolchampions.data.model.ChampionInfo.Spell" />
+
+        <variable
+            name="spellList"
+            type="List&lt;Spell&gt;" />
+
+        <variable
+            name="index"
+            type="int" />
+
+        <variable
+            name="command"
+            type="String" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/darkNavy"
+        android:padding="12dp">
+
+        <ImageView
+            android:id="@+id/iv_spell"
+            imageUrl="@{(index &lt; spellList.size()) ? UrlHelperKt.getSpellImageUrl(spellList.get(index).id) : null}"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_spell_command"
+            style="@style/Text.Keyword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{command}"
+            app:layout_constraintEnd_toEndOf="@id/iv_spell"
+            app:layout_constraintStart_toStartOf="@id/iv_spell"
+            app:layout_constraintTop_toBottomOf="@id/iv_spell"
+            tools:text="Q" />
+
+        <TextView
+            android:id="@+id/tv_spell_title"
+            style="@style/Text.Title.Spell"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:paddingVertical="2dp"
+            android:text="@{index &lt; spellList.size() ? spellList.get(index).name : null}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_spell"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="스킬명" />
+
+        <TextView
+            android:id="@+id/tv_spell_description"
+            style="@style/Text.Description"
+            htmlText="@{index &lt; spellList.size() ? spellList.get(index).description : null}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_spell"
+            app:layout_constraintTop_toBottomOf="@id/tv_spell_title"
+            tools:text="스킬 정보입니다." />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

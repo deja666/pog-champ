@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="org.pogchamp.lolchampions.presentation.util.UrlHelperKt" />
+
+        <variable
+            name="vm"
+            type="org.pogchamp.lolchampions.presentation.ui.viewmodel.DetailViewModel" />
+
+        <variable
+            name="skinAdapter"
+            type="org.pogchamp.lolchampions.presentation.ui.adapter.ChampionSkinAdapter" />
+
+        <variable
+            name="activity"
+            type="org.pogchamp.lolchampions.presentation.ui.view.DetailActivity" />
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        tools:context=".presentation.ui.view.DetailActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/layout_app_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_toolbar_56dp">
+
+                    <TextView
+                        style="@style/Text.Appbar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{vm.championInfo.name}" />
+
+                </androidx.appcompat.widget.Toolbar>
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <ProgressBar
+                showProgress="@{vm.uiState}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vertical_space_between_detail_contents_16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layout_app_bar" />
+
+            <!-- imageUrl="@{UrlHelperKt.getChampionImageUrl(vm.championInfo.id)}" -->
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_champion"
+                onFinishedLoad="@{activity.onFinishedLoadImage}"
+                url="@{vm.championImageUrl}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="6dp"
+                android:transitionName="@string/transition_champion_image"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_app_bar"
+                app:shapeAppearanceOverlay="@style/rounded"/>
+
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/view_champion_tags"
+                tags="@{vm.championInfo.tags}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/horizontal_margin_detail_contents_24dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_champion"
+                app:selectionRequired="false" />
+
+            <TextView
+                android:id="@+id/tv_champion_title"
+                style="@style/Text.Title.Champion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/horizontal_margin_detail_contents_24dp"
+                android:layout_marginTop="4dp"
+                android:text="@{vm.championInfo.title}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_champion_tags" />
+
+            <TextView
+                android:id="@+id/tv_champion_description"
+                style="@style/Text.Description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/horizontal_margin_detail_contents_24dp"
+                android:layout_marginTop="10dp"
+                android:text="@{vm.championInfo.lore}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_champion_title" />
+
+            <include
+                android:id="@+id/view_passive"
+                layout="@layout/view_passive"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/horizontal_margin_detail_contents_24dp"
+                android:layout_marginTop="@dimen/vertical_space_between_detail_contents_16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_champion_description"
+                app:passive="@{vm.championInfo.passive}" />
+
+            <include
+                android:id="@+id/view_spell_q"
+                layout="@layout/view_spell"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/horizontal_margin_detail_contents_24dp"
+                app:command="@{`Q`}"
+                app:index="@{0}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_passive"
+                app:spellList="@{vm.championInfo.spells}" />
+
+            <include
+                android:id="@+id/view_spell_w"
+                layout="@layout/view_spell"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/horizontal_margin_detail_contents_24dp"
+                app:command="@{`W`}"
+                app:index="@{1}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_spell_q"
+                app:spellList="@{vm.championInfo.spells}" />
+
+            <include
+                android:id="@+id/view_spell_e"
+                layout="@layout/view_spell"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/horizontal_margin_detail_contents_24dp"
+                app:command="@{`E`}"
+                app:index="@{2}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_spell_w"
+                app:spellList="@{vm.championInfo.spells}" />
+
+            <include
+                android:id="@+id/view_spell_r"
+                layout="@layout/view_spell"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/horizontal_margin_detail_contents_24dp"
+                app:command="@{`R`}"
+                app:index="@{3}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_spell_e"
+                app:spellList="@{vm.championInfo.spells}" />
+
+            <com.jackandphantom.carouselrecyclerview.CarouselRecyclerview
+                skinAdapter="@{skinAdapter}"
+                skinItems="@{vm.championInfo.skins}"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginHorizontal="@dimen/horizontal_margin_detail_contents_24dp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_spell_r" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

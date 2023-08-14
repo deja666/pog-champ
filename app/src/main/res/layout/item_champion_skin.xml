@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="championId"
+            type="String" />
+
+        <variable
+            name="skin"
+            type="org.pogchamp.lolchampions.data.model.ChampionInfo.Skin" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/Text.SkinTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@{skin.name}" />
+
+        <com.jackandphantom.carouselrecyclerview.view.ReflectionImageView
+            championId="@{championId}"
+            skinNum="@{skin.num}"
+            android:layout_width="150dp"
+            android:layout_height="275dp"
+            android:scaleType="fitCenter" />
+
+    </LinearLayout>
+
+<!--    <com.jackandphantom.carouselrecyclerview.view.ReflectionViewContainer-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:reflect_gap="0dp"-->
+<!--        app:reflect_relativeDepth="0.5">-->
+
+<!--        <ImageView-->
+<!--            championId="@{championId}"-->
+<!--            skinNum="@{skin.num}"-->
+<!--            android:layout_width="120dp"-->
+<!--            android:layout_height="220dp"-->
+<!--            android:scaleType="fitCenter" />-->
+
+<!--        <TextView-->
+<!--            style="@style/Text.Keyword"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@{skin.name}" />-->
+
+<!--    </com.jackandphantom.carouselrecyclerview.view.ReflectionViewContainer>-->
+
+</layout>

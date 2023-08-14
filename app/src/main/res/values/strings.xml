@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Pog Champ</string>
+    <string name="transition_champion_image">transition_champion_image</string>
+    <string name="main_title">Champion</string>
+    <string name="command_passive">P</string>
+</resources>

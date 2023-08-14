@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="org.pogchamp.lolchampions.presentation.util.UrlHelperKt" />
+
+        <variable
+            name="passive"
+            type="org.pogchamp.lolchampions.data.model.ChampionInfo.Passive" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/darkNavy"
+        android:padding="12dp">
+
+        <ImageView
+            android:id="@+id/iv_passive"
+            imageUrl="@{passive != null ? UrlHelperKt.getPassiveImageUrl(passive.image.full) : null}"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_passive_command"
+            style="@style/Text.Keyword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/command_passive"
+            app:layout_constraintEnd_toEndOf="@id/iv_passive"
+            app:layout_constraintStart_toStartOf="@id/iv_passive"
+            app:layout_constraintTop_toBottomOf="@id/iv_passive" />
+
+        <TextView
+            android:id="@+id/tv_passive_title"
+            style="@style/Text.Title.Spell"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:paddingVertical="2dp"
+            android:text="@{passive.name}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_passive"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="패시브명" />
+
+        <TextView
+            android:id="@+id/tv_passive_description"
+            style="@style/Text.Description"
+            htmlText="@{passive.description}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_passive"
+            app:layout_constraintTop_toBottomOf="@id/tv_passive_title"
+            tools:text="패시브 정보입니다." />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
