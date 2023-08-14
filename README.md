@@ -1,6 +1,5 @@
 
-## Bahasa pengembangannya adalah Kotlin dengan bantuan.  
-<br>
+## Bahasa pengembangannya adalah Kotlin dengan bantuan: 
 - `Riot API (Data Dragon https://developer.riotgames.com/)`
 - `MVVM (Model — View — ViewModel)`
 <br>
