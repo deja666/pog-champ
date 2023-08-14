@@ -1,21 +1,21 @@
-# pog-champ
 
 ## Bahasa pengembangannya adalah Kotlin dengan bantuan.  
 <br>
 -Riot API (Data Dragon)
-<br>
+
+
 ## Menggunakan Depedencies Features dari:
--`ViewModel`
+- `ViewModel`
 <br>
--`Data-Binding`
+- `Data-Binding`
 <br>
--`View-Binding`
+- `View-Binding`
 <br>
--`Coroutine-Flow`
+- `Coroutine-Flow`
 <br>
--`Retrofit2`
+- `Retrofit2`
 <br>
--`Moshi`
+- `Moshi`
 <br>
--`Hilt`
+- `Hilt`
 <br>
